@@ -28,6 +28,10 @@ HotelReservationSystem-ejb/nbproject/private/
 HotelReservationSystem-ejb/build/
 HotelReservationSystem-ejb/dist/
 
+HotelReservationSystemLibrary/nbproject/private/
+HotelReservationSystemLibrary/build/
+HotelReservationSystemLibrary/dist/
+
 # EnterpriseApplication1-war/nbproject/private/
 # EnterpriseApplication1-war/build/
 # EnterpriseApplication1-war/dist/

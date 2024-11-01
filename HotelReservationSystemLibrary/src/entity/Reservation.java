@@ -5,11 +5,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -17,33 +19,32 @@ import javax.validation.constraints.NotNull;
  * @author brianpang
  */
 @Entity
-public class Employee implements Serializable {
+public class Reservation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true)
-    private String username;
     @Column(nullable = false)
     @NotNull
-    private String password;
+    private Date startDate;
     @Column(nullable = false)
     @NotNull
-    private Enum role;
+    private Date endDate;
     @Column(nullable = false)
     @NotNull
-    private boolean loggedIn;
+    @Min(0)
+    private double amount;
 
-    public Employee() {
+    public Reservation() {
     }
 
-    public Employee(String username, String password, Enum role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
+    public Reservation(Date startDate, Date endDate, double amount) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.amount = amount;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -52,36 +53,28 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public String getPassword() {
-        return password;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public Enum getRole() {
-        return role;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setRole(Enum role) {
-        this.role = role;
-    }
-
-    public boolean isLoggedIn() {
-        return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     @Override
@@ -94,10 +87,10 @@ public class Employee implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Employee)) {
+        if (!(object instanceof Reservation)) {
             return false;
         }
-        Employee other = (Employee) object;
+        Reservation other = (Reservation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -106,7 +99,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Employee[ id=" + id + " ]";
+        return "entity.Reservation[ id=" + id + " ]";
     }
     
 }
