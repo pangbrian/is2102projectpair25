@@ -24,7 +24,7 @@ public class Reservation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long reservationId;
     @Column(nullable = false)
     @NotNull
     private Date startDate;
@@ -45,12 +45,12 @@ public class Reservation implements Serializable {
         this.amount = amount;
     }
 
-    public Long getId() {
-        return id;
+    public Long getReservationId() {
+        return reservationId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
     }
 
     public Date getStartDate() {
@@ -80,7 +80,7 @@ public class Reservation implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (reservationId != null ? reservationId.hashCode() : 0);
         return hash;
     }
 
@@ -91,7 +91,7 @@ public class Reservation implements Serializable {
             return false;
         }
         Reservation other = (Reservation) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.reservationId == null && other.reservationId != null) || (this.reservationId != null && !this.reservationId.equals(other.reservationId))) {
             return false;
         }
         return true;
@@ -99,7 +99,7 @@ public class Reservation implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Reservation[ id=" + id + " ]";
+        return "entity.Reservation[ id=" + reservationId + " ]";
     }
     
 }
