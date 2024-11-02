@@ -11,7 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -31,9 +32,10 @@ public class Reservation implements Serializable {
     @Column(nullable = false)
     @NotNull
     private Date endDate;
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 11, scale = 2)
     @NotNull
-    @Min(0)
+    @DecimalMin("0.00")
+    @Digits(integer = 9, fraction = 2)
     private double amount;
 
     public Reservation() {

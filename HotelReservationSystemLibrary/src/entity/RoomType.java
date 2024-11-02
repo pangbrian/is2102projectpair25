@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,30 +27,38 @@ public class RoomType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roomTypeId;
-    @Column(nullable = false, unique = true)
+    @Column(length = 32, nullable = false, unique = true)
     @NotNull
+    @Size(min = 1, max = 32)
     private String name;
+    @Column(length = 128)
+    @Size(max = 128)
     private String description;
-    @Column(nullable = false)
+    @Column(length = 32, nullable = false)
     @NotNull
+    @Size(min = 1, max = 32)
     private String size;
     private HashMap<String, Integer> bed;
     @Column(nullable = false)
     @NotNull
     @Min(0)
     private int capacity;
-    private String[] amenities;
+    private List<String> amenities;
+    @Column(nullable = false)
+    @NotNull
+    private boolean disabled;
 
     public RoomType() {
     }
 
-    public RoomType(String name, String description, String size, HashMap<String, Integer> bed, int capacity, String[] amenities) {
+    public RoomType(String name, String description, String size, HashMap<String, Integer> bed, int capacity, List<String> amenities) {
         this.name = name;
         this.description = description;
         this.size = size;
         this.bed = bed;
         this.capacity = capacity;
         this.amenities = amenities;
+        this.disabled = false;
     }
 
     public Long getRoomTypeId() {
@@ -99,12 +109,20 @@ public class RoomType implements Serializable {
         this.capacity = capacity;
     }
 
-    public String[] getAmenities() {
+    public List<String> getAmenities() {
         return amenities;
     }
 
-    public void setAmenities(String[] amenities) {
+    public void setAmenities(List<String> amenities) {
         this.amenities = amenities;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
 
     @Override

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,11 +24,13 @@ public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
-    @Column(nullable = false, unique = true)
+    @Column(length = 32, nullable = false, unique = true)
     @NotNull
+    @Size(min = 1, max = 32)
     private String username;
-    @Column(nullable = false)
+    @Column(length = 32, nullable = false)
     @NotNull
+    @Size(min = 1, max = 32)
     private String password;
     @Column(nullable = false)
     @NotNull
@@ -43,6 +46,7 @@ public class Employee implements Serializable {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.loggedIn = false;
     }
     
     public Long getEmployeeId() {
