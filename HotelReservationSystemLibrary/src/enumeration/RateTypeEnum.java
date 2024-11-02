@@ -8,6 +8,6 @@ package enumeration;
  *
  * @author brianpang
  */
-public enum EmployeeTypeEnum {
-    SYSTEM_ADMIN, OPERATION_MANAGER, SALES_MANAGER, GUEST_RELATION_OFFICER;
+public enum RateTypeEnum {
+    PUBLISHED, NORMAL, PEAK, PROMOTION;
 }
