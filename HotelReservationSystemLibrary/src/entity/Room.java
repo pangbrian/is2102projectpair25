@@ -48,6 +48,7 @@ public class Room implements Serializable {
         this.roomNo = roomNo;
         this.isAvailable = roomStatus;
         this.schedule = schedule;
+        this.disabled = false;
     }
 
     public Long getRoomId() {
